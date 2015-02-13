@@ -1,4 +1,5 @@
 import yaml.Yaml;
+import urltpl.*;
 private typedef Vars = haxe.DynamicAccess<Dynamic>;
 
 class RouteTestGroup extends Group<BasicUrlTplRouter<String>>{

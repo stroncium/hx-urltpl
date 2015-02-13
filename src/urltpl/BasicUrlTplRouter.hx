@@ -1,3 +1,5 @@
+package urltpl;
+
 using StringTools;
 
 class BasicUrlTplRouter<Target>{

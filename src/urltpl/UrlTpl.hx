@@ -1,32 +1,6 @@
+package urltpl;
+
 import haxe.ds.StringMap;
-
-class UrlTplError{
-  var tpl:UrlTpl;
-  var txt:String;
-  public function new(tpl, txt){
-    this.tpl = tpl;
-    this.txt = txt;
-  }
-
-  public function toString() return 'UrlTpl Error: $txt in "${tpl.src}"';
-}
-
-class UrlTplRenderError extends UrlTplError{
-  override public function toString() return 'UrlTpl RenderError: $txt in "${tpl.src}"';
-}
-
-class UrlTplParseError extends UrlTplError{
-  public var pos(default, null):Int;
-  public function new(tpl, txt, pos){
-    super(tpl, txt);
-    this.pos = pos;
-  }
-
-  override public function toString() return pos == -1 ? 'UrlTpl ParseError: $txt in "${tpl.src}"' : 'UrlTplParseError: $txt in "${tpl.src}" at pos $pos';
-}
-
-
-// private typedef Bind = {name:String, opt:Bool, add:String, arr:Bool, hash:Bool, notEmpty:Bool};
 
 private typedef Bind = {name:String, flags:{opt:Bool, add:String, arr:Bool, hash:Bool, notEmpty:Bool}};
 
