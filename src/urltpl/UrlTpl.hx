@@ -1,7 +1,5 @@
 package urltpl;
 
-import haxe.ds.StringMap;
-
 private typedef Bind = {name:String, flags:{opt:Bool, add:String, arr:Bool, hash:Bool, notEmpty:Bool}};
 
 enum UTExp{
@@ -104,10 +102,7 @@ class UrlTpl{
     for(expr in exprs) switch(expr){
       case Lit(str):
         b.add(str);
-      // case Exp(str):
-      //   b.add(BR_OPN);
-      //   b.add(specialEncode(Std.string(vars[str])));
-      //   b.add(BR_CLS);
+
       case Simple(binds):
         var first = true;
         for(bind in binds){
@@ -133,6 +128,7 @@ class UrlTpl{
           }
           else if(!bind.flags.opt) throw 'Missing bind "${bind.name}" in $vars';
         }
+
       case Query(binds):
         var first = true;
         for(bind in binds){
