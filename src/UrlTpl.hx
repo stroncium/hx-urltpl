@@ -41,8 +41,8 @@ class UrlTpl{
   public var src:String;
   public var exprs:Array<UTExp>;
 
-  static inline var OPEN_BR = '[';
-  static inline var CLOSE_BR = ']';
+  static inline var BR_OPN = '[';
+  static inline var BR_CLS = ']';
 
   static inline var TYPE_SIMPLE = 1;
   static inline var TYPE_QUERY = 2;
@@ -52,16 +52,16 @@ class UrlTpl{
     var exprs = exprs = [];
     var firstPos = 0;
     var pos;
-    while((pos = src.indexOf(OPEN_BR, firstPos)) != -1){
+    while((pos = src.indexOf(BR_OPN, firstPos)) != -1){
       if(pos > firstPos){
         var litStr = src.substr(firstPos, pos - firstPos);
-        if(litStr.indexOf(CLOSE_BR) != -1) throw new UrlTplParseError(this, '"$CLOSE_BR" out of place', -1);
+        if(litStr.indexOf(BR_CLS) != -1) throw new UrlTplParseError(this, '"$BR_CLS" out of place', -1);
         exprs.push(Lit(urlEncode(litStr)));
       }
-      var endPos = src.indexOf(CLOSE_BR, pos+1);
-      if(endPos == -1) throw new UrlTplParseError(this,'"$OPEN_BR" out of place', endPos);
+      var endPos = src.indexOf(BR_CLS, pos+1);
+      if(endPos == -1) throw new UrlTplParseError(this,'"$BR_OPN" out of place', endPos);
       var expStr = src.substr(pos+1, endPos - pos - 1);
-      if(expStr.indexOf(OPEN_BR) != -1) throw new UrlTplParseError(this, '"$OPEN_BR" out of place', -1);
+      if(expStr.indexOf(BR_OPN) != -1) throw new UrlTplParseError(this, '"$BR_OPN" out of place', -1);
       var type;
       switch(expStr.charCodeAt(0)){
         case '?'.code:
@@ -119,7 +119,7 @@ class UrlTpl{
     }
     if(firstPos < src.length){
       var litStr = src.substr(firstPos);
-      if(litStr.indexOf(CLOSE_BR) != -1) throw new UrlTplParseError(this, '"$CLOSE_BR" out of place', -1);
+      if(litStr.indexOf(BR_CLS) != -1) throw new UrlTplParseError(this, '"$BR_CLS" out of place', -1);
       exprs.push(Lit(urlEncode(litStr)));
     }
   }
@@ -131,9 +131,9 @@ class UrlTpl{
       case Lit(str):
         b.add(str);
       // case Exp(str):
-      //   b.add(OPEN_BR);
+      //   b.add(BR_OPN);
       //   b.add(specialEncode(Std.string(vars[str])));
-      //   b.add(CLOSE_BR);
+      //   b.add(BR_CLS);
       case Simple(binds):
         var first = true;
         for(bind in binds){
