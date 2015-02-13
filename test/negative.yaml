@@ -1,0 +1,21 @@
+name: Negative
+groups:
+  - 
+    name: Invalid Templates
+    vars:
+      num: 123
+      emptyArr: []
+    cases:
+      - [']', null]
+      - ['[', null]
+      - ['[[]', null]
+      - ['[]', null]
+  - 
+    name: Invalid Data
+    vars:
+      num: 123
+      emptyArr: []
+    cases:
+      - ['[nonexistant]', null]
+      - ['[num*]', null]
+      - ['[emptyArr+]', null]

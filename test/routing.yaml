@@ -1,0 +1,19 @@
+name: Routing
+type: route
+groups:
+  -
+    name: Simple Expansion
+    routes:
+      - 'x'
+      - 'x[str]'
+      - '/[qwe]/[asd]'
+      - '/[qwe]/[asd]/[zxc?]'
+      - '[v1,v2]'
+    cases:
+      - ['x', 'x', {}]
+      - ['xabc', 'x[str]', {str: 'abc'}]
+      - ['x123', 'x[str]', {str: '123'}]
+      - ['v1,v2', '[v1,v2]', {v1: v1, v2: v2}]
+      - ['/qwe/asd', '/[qwe]/[asd]', {qwe: qwe, asd: asd}]
+      - ['/qwe/asd/', '/[qwe]/[asd]/[zxc?]', {qwe: qwe, asd: asd, zxc: null}]
+      - ['/qwe/asd/zxc', '/[qwe]/[asd]/[zxc?]', {qwe: qwe, asd: asd, zxc:zxc}]

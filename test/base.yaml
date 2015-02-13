@@ -1,0 +1,45 @@
+name: Rendering
+groups:
+  - 
+    name: Simple Expansion
+    vars:
+      num: 123
+      str: ABC
+      uni: АБВ
+      nil: null
+      arr: ['D', 'E', 'F']
+      emptyArr: []
+    cases:
+      - ['', ['']]
+      - ['x', ['x']]
+      - ['[num]', ['123']]
+      - ['[str]', ['ABC']]
+      - ['[nil?]', ['']]
+      - ['[num,str]', ['123,ABC']]
+      - ['[num,nil?]', ['123']]
+      - ['[num:int]', ['123']]
+      - ['[num:some random string without square brackets and commas]', ['123']]
+      - ['[arr*]', ['D,E,F']]
+      - ['[emptyArr*]', ['']]
+      - ['[nil*?]', ['']]
+      - ['/[str]/[num]', ['/ABC/123']]
+      - ['[arr+]', ['D,E,F']]
+      # - ['{uni}', ['АБВ']]
+  - 
+    name: Query Expansion
+    vars:
+      num: 123
+      str: ABC
+      uni: АБВ
+      nil: null
+      arr: ['D', 'E', 'F']
+      emptyArr: []
+      obj: 
+        a: 1
+        b: 2
+        c: 3
+    cases:
+      - ['[?num,str,nil?]', ['?num=123&str=ABC']]
+      - ['[?arr*]', ['?arr=D&arr=E&arr=F']]
+      - ['[?emptyArr*]', ['']]
+      - ['[?obj%]', ['?a=1&b=2&c=3']]

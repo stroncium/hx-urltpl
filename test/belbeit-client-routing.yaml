@@ -1,0 +1,25 @@
+name: Belbeit Client Routing
+type: route
+groups:
+  -
+    name: Everything
+    cases:
+      - ['/profile/123', '/profile/[id]', {id: '123'}]
+      - ['/profile/123/games', '/profile/[id]/games', {id: '123'}]
+      - ['/games/view/qwe123', '/games/view/[gameId]', {gameId: 'qwe123'}]
+      - ['/games/play/qwe123', '/games/play/[gameId]', {gameId: 'qwe123'}]
+      - ['/profile/123/gifts', '/profile/[id]/gifts', {id:'123'}]
+      - ['/profile/123/gifts/store', '/profile/[id]/gifts/store', {id:'123'}]
+      - ['/profile/123/gifts/send/azaza', '/profile/[id]/gifts/send/[giftData]', {id:'123', giftData:'azaza'}]
+      - ['/profile/123/gift/2', '/profile/[id]/gift/[giftIndex]', {id:'123', giftIndex:2}]
+      - ['/profile/123/album/12', '/profile/[id]/album/[albumId]', {id:'123', albumId:'12'}]
+      - ['/profile/123/album/12/edit', '/profile/[id]/album/[albumId]/edit', {id:'123', albumId:'12'}]
+      - ['/profile/123/album/12/delete', '/profile/[id]/album/[albumId]/delete', {id:'123', albumId:'12'}]
+      - ['/recover/qwe@asd.zxc/123123/abc123', '/recover/[email]/[date]/[hash]', {email: 'qwe@asd.zxc', date:'123123', hash:'abc123'}]
+      - ['/useroffice', '/useroffice', {}]
+      - ['/useroffice/', '/useroffice/', {}]
+      - ['/useroffice/premium', '/useroffice/premium', {}]
+      - ['/useroffice/account', '/useroffice/account', {}]
+      - ['/useroffice/balance', '/useroffice/balance', {}]
+      - ['/useroffice/help', '/useroffice/help', {}]
+      - ['/search/profiles/this+is+some+text', '/search/profiles/[q]', {q: 'this is some text'}]
