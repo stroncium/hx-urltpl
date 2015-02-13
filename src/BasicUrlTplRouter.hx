@@ -1,6 +1,6 @@
 using StringTools;
 
-class UrlTplRouter<Target>{
+class BasicUrlTplRouter<Target>{
   var pairs:Array<{tpl:UrlTpl, tgt:Target}> = [];
   public function new(){
   }

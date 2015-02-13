@@ -1,18 +1,18 @@
 import yaml.Yaml;
 private typedef Vars = haxe.DynamicAccess<Dynamic>;
 
-class RouteTestGroup extends Group<UrlTplRouter<String>>{
-  var router:UrlTplRouter<String>;
+class RouteTestGroup extends Group<BasicUrlTplRouter<String>>{
+  var router:BasicUrlTplRouter<String>;
   public function new(name, routes:Array<String>){
     super(name);
-    var router = router = new UrlTplRouter();
+    var router = router = new BasicUrlTplRouter();
     for(route in routes) router.addRoute(route, route);
   }
 
   override function prepareContext() return router;
 }
 
-class RouteTest extends Case<UrlTplRouter<String>>{
+class RouteTest extends Case<BasicUrlTplRouter<String>>{
   var str:String;
   var tgt:String;
   var caps:haxe.DynamicAccess<Dynamic>;
@@ -23,7 +23,7 @@ class RouteTest extends Case<UrlTplRouter<String>>{
     this.caps = caps;
   }
 
-  override function run(router:UrlTplRouter<String>){
+  override function run(router:BasicUrlTplRouter<String>){
     var res = null, err = null;
     try{
       res = router.route(str);
